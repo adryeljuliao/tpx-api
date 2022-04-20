@@ -1,0 +1,11 @@
+server:
+  port : 8082
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://spo-mysql1.hostzone.net:3306/sql18491
+    username: sql18491
+    password: Vj0976ydsS
+  jpa:
+    hibernate:
+      ddl-auto: update
