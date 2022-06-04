@@ -35,13 +35,13 @@ public class UserService {
     private void calcKD(User user) {
         if (Objects.nonNull(user)) {
 
-            BigDecimal bdk = BigDecimal.valueOf(user.getKills());
-            BigDecimal bdd = BigDecimal.valueOf(user.getDeaths());
+            BigDecimal kills = BigDecimal.valueOf(user.getKills());
+            BigDecimal deaths = BigDecimal.valueOf(user.getDeaths());
 
-            if (bdd.compareTo(BigDecimal.ZERO) == 0){
-                user.setKd(bdk);
+            if (deaths.equals(BigDecimal.ZERO) || kills.equals(BigDecimal.ZERO)) {
+                user.setKd(kills);
             } else {
-                user.setKd(bdk.divide(bdd, 2, RoundingMode.HALF_EVEN));
+                user.setKd(kills.divide(deaths, 2, RoundingMode.HALF_EVEN));
             }
         }
     }
