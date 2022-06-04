@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,8 +34,15 @@ public class UserService {
 
     private void calcKD(User user) {
         if (Objects.nonNull(user)) {
-            Double kd = (double) user.getKills() / (double) user.getDeaths();
-            user.setKd(kd);
+
+            BigDecimal kills = BigDecimal.valueOf(user.getKills());
+            BigDecimal deaths = BigDecimal.valueOf(user.getDeaths());
+
+            if (deaths.equals(BigDecimal.ZERO) || kills.equals(BigDecimal.ZERO)) {
+                user.setKd(kills);
+            } else {
+                user.setKd(kills.divide(deaths, 2, RoundingMode.HALF_EVEN));
+            }
         }
     }
 

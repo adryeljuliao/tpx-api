@@ -3,6 +3,7 @@ package com.tpxsports.tpxsports.domains;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity(name = "rankme")
 @Data
@@ -23,6 +24,6 @@ public class User {
     private Integer assists;
 
     @Transient
-    private Double kd;
+    private BigDecimal kd;
 
 }
